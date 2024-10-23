@@ -9,6 +9,7 @@ class CustomOutlineButton extends StatelessWidget {
   const CustomOutlineButton(
       {super.key,
       this.icon,
+      this.borderStyle,
       required this.text,
       this.foregroundColor,
       this.backgroundColor,
@@ -26,11 +27,12 @@ class CustomOutlineButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double? borderRadius;
+  final BorderStyle? borderStyle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height ?? 55.sp,
+      height: height ?? 55.h,
       width: width,
       child: OutlinedButton(
         onPressed: onPressed,
@@ -41,7 +43,7 @@ class CustomOutlineButton extends StatelessWidget {
           foregroundColor: foregroundColor,
           side: BorderSide(
               color: borderColor ?? Colors.grey.shade300,
-              style: BorderStyle.solid,
+              style: borderStyle ?? BorderStyle.solid,
               width: 1,
               strokeAlign: 1),
           backgroundColor: backgroundColor,
@@ -50,12 +52,12 @@ class CustomOutlineButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon ?? SizedBox.shrink(),
-            Gap(10.sp),
+            Gap(10.h),
             Text(
               text,
               style: Textstyle.textStyle.copyWith(
                   color: foregroundColor ?? Get.theme.colorScheme.onTertiary,
-                  fontSize: 16.sp),
+                  fontSize: 16.h),
             ),
           ],
         ),

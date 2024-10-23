@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:pomo/core/styles/teststyle.dart';
 
 class CustomSeperator extends StatelessWidget {
@@ -19,11 +18,11 @@ class CustomSeperator extends StatelessWidget {
           thickness: 0.8,
         )),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.sp),
+          padding: EdgeInsets.symmetric(horizontal: 16.h),
           child: Text(
             middleText ?? '',
             style: Textstyle.textStyle.copyWith(
-              fontSize: 14.sp,
+              fontSize: 16.h,
             ),
           ),
         ),

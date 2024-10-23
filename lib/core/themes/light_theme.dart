@@ -9,7 +9,7 @@ final lightTheme = ThemeData(
   elevatedButtonTheme: ElevatedbuttonTheme.lightTheme,
   colorScheme: ColorScheme.light(
       primary: AppColors.accent,
-      onPrimary: Colors.grey.shade300,
+      onPrimary: Colors.grey.shade400,
       outline: AppColors.lightAccent,
       secondary: AppColors.blueColor,
       onSecondary: Colors.white,

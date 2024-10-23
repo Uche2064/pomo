@@ -15,6 +15,9 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.validator,
+    this.readOnly,
+    this.keyboardType,
+    this.onTap,
   });
 
   final Widget? prefixIcon;
@@ -24,21 +27,25 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   String? Function(String?)? validator;
   void Function(String)? onChanged;
-
+  void Function()? onTap;
+  final bool? readOnly;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      onTap: onTap,
+      readOnly: readOnly ?? false,
+      keyboardType: keyboardType ?? TextInputType.emailAddress,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
       onChanged: onChanged,
-      style: Textstyle.textStyle.copyWith(fontSize: 14.sp),
+      style: Textstyle.textStyle.copyWith(fontSize: 18.h),
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: Textstyle.textStyle.copyWith(
-          color: Colors.grey.shade400,
+          color: Colors.grey.shade600,
           fontSize: AppSizes.fsXl,
         ),
         filled: true,
@@ -58,13 +65,15 @@ class CustomTextFormField extends StatelessWidget {
             AppSizes.borderMd,
           ),
           borderSide: BorderSide(
-            color: Get.theme.colorScheme.primary,
+            color: readOnly == null
+                ? Get.theme.colorScheme.primary
+                : Get.theme.colorScheme.onPrimary,
           ),
         ),
         border: InputBorder.none,
         errorStyle: Textstyle.textStyle.copyWith(
           color: Get.theme.colorScheme.error,
-          fontSize: AppSizes.fsMd,
+          fontSize: 14.h,
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(

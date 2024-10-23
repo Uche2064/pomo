@@ -21,7 +21,7 @@ import 'package:simple_icons/simple_icons.dart';
 class SignupView extends GetView {
   SignupView({super.key});
 
-  SignupController signupController = Get.put(SignupController());
+  SignupController _signupController = Get.put(SignupController());
   final _formKeySignup = GlobalKey<FormState>(debugLabel: "signup");
 
   @override
@@ -30,7 +30,7 @@ class SignupView extends GetView {
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.sp),
+          padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -38,22 +38,22 @@ class SignupView extends GetView {
                   Text(
                     Strings.createAccount,
                     style: Textstyle.textStyle.copyWith(
-                        fontSize: AppSizes.fs4Xl + 16.sp,
+                        fontSize: AppSizes.fs4Xl + 16.h,
                         fontWeight: FontWeight.bold),
                   ),
-                  Gap(20.sp),
+                  Gap(20.h),
                   Form(
                       key: _formKeySignup,
                       child: Column(
                         children: [
                           Obx(
                             () => CustomTextFormField(
-                              controller: signupController.emailCtrl,
+                              controller: _signupController.emailCtrl,
                               hintText: Strings.email,
                               prefixIcon: Icon(
                                 Icons.email,
-                                size: 18.sp,
-                                color: signupController.emailText.isEmpty
+                                size: 18.h,
+                                color: _signupController.emailText.isEmpty
                                     ? Colors.grey.shade400
                                     : Colors.grey.shade900,
                               ),
@@ -62,34 +62,34 @@ class SignupView extends GetView {
                               onChanged: (value) {
                                 printInfo(
                                     info:
-                                        signupController.isEnabled.toString());
-                                signupController.emailText.value = value;
+                                        _signupController.isEnabled.toString());
+                                _signupController.emailText.value = value;
                               },
                             ),
                           ),
-                          Gap(16.sp),
+                          Gap(16.h),
                           Obx(() => CustomTextFormField(
-                                obscureText: signupController.isVisible.value,
-                                controller: signupController.passwordCtrl,
+                                obscureText: _signupController.isVisible.value,
+                                controller: _signupController.passwordCtrl,
                                 hintText: Strings.password,
                                 prefixIcon: Icon(
                                   Icons.lock,
-                                  color: signupController.passwordText.isEmpty
+                                  color: _signupController.passwordText.isEmpty
                                       ? Colors.grey.shade400
                                       : Colors.grey.shade900,
-                                  size: 18.sp,
+                                  size: 18.h,
                                 ),
                                 suffixIcon: IconButton(
                                   splashColor: Get.theme.colorScheme.primary,
                                   icon: Icon(
-                                    !signupController.isVisible.value
+                                    !_signupController.isVisible.value
                                         ? Icons.visibility
                                         : Icons.visibility_off,
-                                    size: 18.sp,
+                                    size: 18.h,
                                   ),
                                   onPressed: () =>
-                                      signupController.toggleIcon(),
-                                  color: signupController.passwordText.isEmpty
+                                      _signupController.toggleIcon(),
+                                  color: _signupController.passwordText.isEmpty
                                       ? Colors.grey.shade400
                                       : Colors.grey.shade900,
                                 ),
@@ -97,88 +97,99 @@ class SignupView extends GetView {
                                     Validators.validatePassword(password),
                                 onChanged: (value) {
                                   printInfo(
-                                      info: signupController.isEnabled
+                                      info: _signupController.isEnabled
                                           .toString());
-                                  signupController.passwordText.value = value;
+                                  _signupController.passwordText.value = value;
                                 },
                               )),
                         ],
                       )),
-                  Gap(16.sp),
+                  Gap(16.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Obx(() => Checkbox(
-                            checkColor: Colors.white,
-                            value: signupController.rememberMe.value,
-                            onChanged: (value) {
-                              signupController.rememberMe.value = value!;
-                            },
-                            side: BorderSide(
-                                color: Get.theme.colorScheme.primary,
-                                width: 2,
-                                strokeAlign: 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(6.sp),
-                              ),
+                      Obx(
+                        () => Checkbox(
+                          checkColor: Colors.white,
+                          value: _signupController.rememberMe.value,
+                          onChanged: (value) {
+                            _signupController.rememberMe.value = value!;
+                          },
+                          side: BorderSide(
+                              color: Get.theme.colorScheme.primary,
+                              width: 2,
+                              strokeAlign: 0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(6.h),
                             ),
-                          )),
-                      Text(
-                        Strings.rememberMe,
-                        style: Textstyle.textStyle.copyWith(fontSize: 14.sp),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _signupController.rememberMe.value =
+                              !_signupController.rememberMe.value;
+                        },
+                        child: Text(
+                          Strings.rememberMe,
+                          style: Textstyle.textStyle.copyWith(fontSize: 16.h),
+                        ),
                       )
                     ],
                   ),
-                  Gap(20.sp),
+                  Gap(20.h),
                   Obx(() => CustomElevatedButton(
-                    text: Strings.signUp,
-                    formKeySignin: _formKeySignup,
-                    controller: signupController,
-                        onPressed: signupController
+                        text: Strings.signUp,
+                        formKeySignin: _formKeySignup,
+                        controller: _signupController,
+                        onPressed: _signupController
                                     .emailText.value.isNotEmpty &&
-                                signupController.passwordText.value.isNotEmpty
+                                _signupController.passwordText.value.isNotEmpty
                             ? () {
                                 if (_formKeySignup.currentState!.validate()) {
-                                  printInfo(info: "Valid");
-                                } else {
-                                  printInfo(info: "Invalid");
+                                  _signupController
+                                      .signupWithEmailAndPassword();
                                 }
                               }
                             : null,
-                       
                       )),
-                  Gap(45.sp),
+                  Gap(45.h),
                   CustomSeperator(
                     middleText: Strings.orContinueWith,
                   ),
-                  Gap(28.sp),
+                  Gap(28.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SquareContainerForSocialMedia(
+                        onTap: () {},
                         socialMediaIcon: Icon(
                           SimpleIcons.facebook,
                           color: SimpleIconColors.facebook,
                         ),
                       ),
-                      Gap(8.sp),
+                      Gap(8.h),
                       SquareContainerForSocialMedia(
-                          socialMediaIcon: Image(
-                        image: AssetImage(
-                          ImageStrings.googleLogo,
+                        onTap: () => _signupController.signUpWithGoogle(),
+                        socialMediaIcon: Image(
+                          image: AssetImage(
+                            ImageStrings.googleLogo,
+                          ),
+                          height: 25,
                         ),
-                        height: 25,
-                      )),
-                      Gap(8.sp),
+                      ),
+                      Gap(8.h),
                       SquareContainerForSocialMedia(
-                          socialMediaIcon: Icon(
-                        SimpleIcons.apple,
-                        color: SimpleIconColors.apple,
-                      )),
+                        onTap: () {},
+                        socialMediaIcon: Icon(
+                          SimpleIcons.apple,
+                          color: SimpleIconColors.apple,
+                        ),
+                      ),
                     ],
                   ),
-                  Gap(28.sp),
+                  Gap(28.h),
                   AccountAccessor(
                     leftText: Strings.alreadyHaveAnAccount,
                     rightText: Strings.signIn,

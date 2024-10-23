@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pomo/core/global/strings.dart';
+import 'package:pomo/core/styles/app_colors.dart';
 import 'package:pomo/core/styles/app_sizes.dart';
 import 'package:pomo/core/styles/teststyle.dart';
 import 'package:pomo/utils/validators.dart';
@@ -11,35 +12,46 @@ import 'package:pomo/utils/validators.dart';
 class CustomPhoneField extends StatelessWidget {
   const CustomPhoneField({
     super.key,
-    required Locale? locale,
-  }) : _locale = locale;
+    required this.controller,
+    required this.locale,
+  });
 
-  final Locale? _locale;
-
+  final Locale? locale;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
+      controller: controller,
       pickerDialogStyle: PickerDialogStyle(
-        backgroundColor: Colors.grey.shade500,
-        padding: EdgeInsets.all(16.sp),
+        backgroundColor: Colors.grey.shade200,
+        padding: EdgeInsets.all(16.h),
         countryCodeStyle: Textstyle.textStyle.copyWith(
-          fontSize: 14.sp,
+          fontSize: 16.h,
         ),
         countryNameStyle: Textstyle.textStyle.copyWith(
-          fontSize: 14.sp,
+          fontSize: 16.h,
         ),
         searchFieldInputDecoration: InputDecoration(
+          filled: true,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              style: BorderStyle.none,
+              width: 0,
+            ),
+          ),
+          fillColor: AppColors.lightAccent,
           hintText: Strings.searchCountry,
           hintStyle: Textstyle.textStyle.copyWith(
-            fontSize: 14.sp,
+            fontSize: 16.h,
+            color: AppColors.accent,
           ),
           suffixIcon: Icon(Icons.search),
         ),
       ),
       dropdownTextStyle: Textstyle.textStyle.copyWith(
-        fontSize: 14.sp,
+        fontSize: 16.h,
       ),
-      style: Textstyle.textStyle.copyWith(fontSize: 14.sp),
+      style: Textstyle.textStyle.copyWith(fontSize: 16.h),
       validator: (phoneNumber) =>
           Validators.validatePhoneNumber(phoneNumber!.completeNumber),
       decoration: InputDecoration(
@@ -78,7 +90,7 @@ class CustomPhoneField extends StatelessWidget {
           ),
         ),
       ),
-      initialCountryCode: _locale!.countryCode,
+      initialCountryCode: locale!.countryCode,
       keyboardType: TextInputType.numberWithOptions(),
       onChanged: (phone) {
         printInfo(info: phone.completeNumber);

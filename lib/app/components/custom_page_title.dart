@@ -14,7 +14,7 @@ class CustomPageTitle extends StatelessWidget {
     return Text(
       title,
       style: Textstyle.textStyle
-          .copyWith(fontWeight: FontWeight.bold, fontSize: 20.sp),
+          .copyWith(fontWeight: FontWeight.bold, fontSize: 20.h),
     );
   }
 }

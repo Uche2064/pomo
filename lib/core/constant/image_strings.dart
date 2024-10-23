@@ -7,8 +7,11 @@ class ImageStrings {
   static const String completedTask =
       "assets/images/completed-animate.svg";
   static const String productivity =
-      "assets/images/undraw_Dev_productivity_re_fylf.png";
+      "assets/images/forgot-password-animate.svg";
   static const String pieGraph = "assets/images/pie-chart-animate.svg";
   static const String googleLogo = "assets/logo/google_logo.png";
   static const String forgotPassword = "assets/images/forgot-password-animate.svg";
+  static const String checkMark = "assets/images/check-mark.png";
+  static const String pomo = "assets/logo/pomo.png";
+  static const String congratulationImg = "assets/images/congratulation_img.png";
 }

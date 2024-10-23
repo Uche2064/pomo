@@ -21,7 +21,7 @@ import 'package:simple_icons/simple_icons.dart';
 class SigninView extends GetView {
   SigninView({super.key});
 
-  SigninController signinController = Get.put(SigninController());
+  SigninController _signinController = Get.put(SigninController());
   final _formKeySignin = GlobalKey<FormState>();
 
   @override
@@ -30,7 +30,7 @@ class SigninView extends GetView {
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.sp),
+          padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -38,68 +38,75 @@ class SigninView extends GetView {
                   Text(
                     Strings.loginAccount,
                     style: Textstyle.textStyle.copyWith(
-                        fontSize: AppSizes.fs4Xl + 16.sp,
+                        fontSize: AppSizes.fs4Xl + 16.h,
                         fontWeight: FontWeight.bold),
                   ),
-                  Gap(20.sp),
+                  Gap(20.h),
                   Form(
                       key: _formKeySignin,
                       child: Column(
                         children: [
                           Obx(
                             () => CustomTextFormField(
-                              controller: signinController.emailCtrl,
+                              controller: _signinController.emailCtrl,
                               hintText: Strings.email,
                               prefixIcon: Icon(
                                 Icons.email,
-                                size: 18.sp,
-                                color: signinController.emailText.isEmpty
+                                size: 18.h,
+                                color: _signinController.emailText.isEmpty
                                     ? Colors.grey.shade400
                                     : Colors.grey.shade900,
                               ),
                               validator: (email) =>
                                   Validators.validateEmail(email),
                               onChanged: (value) {
-                                signinController.emailText.value = value;
+                                _signinController.emailText.value = value;
                               },
                             ),
                           ),
-                          Gap(16.sp),
+                          Gap(16.h),
                           Obx(() => CustomTextFormField(
-                                obscureText: true,
-                                controller: signinController.passwordCtrl,
+                                obscureText: _signinController.isVisible.value,
+                                controller: _signinController.passwordCtrl,
                                 hintText: Strings.password,
                                 prefixIcon: Icon(
                                   Icons.lock,
-                                  color: signinController.passwordText.isEmpty
+                                  color: _signinController.passwordText.isEmpty
                                       ? Colors.grey.shade400
                                       : Colors.grey.shade900,
-                                  size: 18.sp,
+                                  size: 18.h,
                                 ),
-                                suffixIcon: Icon(
-                                  Icons.visibility_off,
-                                  color: signinController.passwordText.isEmpty
+                                suffixIcon: IconButton(
+                                  splashColor: Get.theme.colorScheme.primary,
+                                  icon: Icon(
+                                    !_signinController.isVisible.value
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    size: 18.h,
+                                  ),
+                                  onPressed: () =>
+                                      _signinController.toggleIcon(),
+                                  color: _signinController.passwordText.isEmpty
                                       ? Colors.grey.shade400
                                       : Colors.grey.shade900,
-                                  size: 18.sp,
                                 ),
                                 validator: (password) =>
                                     Validators.validatePassword(password),
                                 onChanged: (value) {
-                                  signinController.passwordText.value = value;
+                                  _signinController.passwordText.value = value;
                                 },
                               )),
                         ],
                       )),
-                  Gap(16.sp),
+                  Gap(16.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Obx(() => Checkbox(
                             checkColor: Colors.white,
-                            value: signinController.rememberMe.value,
+                            value: _signinController.rememberMe.value,
                             onChanged: (value) {
-                              signinController.rememberMe.value = value!;
+                              _signinController.rememberMe.value = value!;
                             },
                             side: BorderSide(
                                 color: Get.theme.colorScheme.primary,
@@ -107,57 +114,54 @@ class SigninView extends GetView {
                                 strokeAlign: 0),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(6.sp),
+                                Radius.circular(6.h),
                               ),
                             ),
                           )),
-                      InkWell
-                      (
+                      InkWell(
                         onTap: () {
-                          signinController.rememberMe.value =
-                              !signinController.rememberMe.value;
+                          _signinController.rememberMe.value =
+                              !_signinController.rememberMe.value;
                         },
                         child: Text(
                           Strings.rememberMe,
-                          style: Textstyle.textStyle.copyWith(fontSize: 14.sp),
+                          style: Textstyle.textStyle.copyWith(fontSize: 16.h),
                         ),
                       )
                     ],
                   ),
-                  Gap(20.sp),
+                  Gap(20.h),
                   Obx(
                     () => CustomElevatedButton(
                       text: Strings.signUp,
-                      controller: signinController,
+                      controller: _signinController,
                       formKeySignin: _formKeySignin,
-                      onPressed: signinController.emailText.value.isNotEmpty &&
-                              signinController.passwordText.value.isNotEmpty
+                      onPressed: _signinController.emailText.value.isNotEmpty &&
+                              _signinController.passwordText.value.isNotEmpty
                           ? () {
                               if (_formKeySignin.currentState!.validate()) {
-                                printInfo(info: "Valid");
-                              } else {
-                                printInfo(info: "Invalid");
+                                _signinController.signinUser();
                               }
                             }
                           : null,
                     ),
                   ),
-                  Gap(16.sp),
+                  Gap(16.h),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       Strings.forgotThePassword,
                       style: Textstyle.textStyle.copyWith(
                         color: Get.theme.colorScheme.primary,
-                        fontSize: 16.sp,
+                        fontSize: 16.h,
                       ),
                     ),
                   ),
-                  Gap(45.sp),
+                  Gap(45.h),
                   CustomSeperator(
                     middleText: Strings.orContinueWith,
                   ),
-                  Gap(28.sp),
+                  Gap(28.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -167,7 +171,7 @@ class SigninView extends GetView {
                           color: SimpleIconColors.facebook,
                         ),
                       ),
-                      Gap(8.sp),
+                      Gap(8.h),
                       SquareContainerForSocialMedia(
                           socialMediaIcon: Image(
                         image: AssetImage(
@@ -175,7 +179,7 @@ class SigninView extends GetView {
                         ),
                         height: 25,
                       )),
-                      Gap(8.sp),
+                      Gap(8.h),
                       SquareContainerForSocialMedia(
                           socialMediaIcon: Icon(
                         SimpleIcons.apple,
@@ -183,7 +187,7 @@ class SigninView extends GetView {
                       )),
                     ],
                   ),
-                  Gap(28.sp),
+                  Gap(28.h),
                   AccountAccessor(
                     leftText: Strings.dontHaveAnAccount,
                     rightText: Strings.signUp,

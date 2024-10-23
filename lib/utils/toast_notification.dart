@@ -10,7 +10,7 @@ class ToastNotification {
     ElegantNotification.success(
       description: Text(
         message,
-        style: Get.textTheme.headlineSmall!
+        style: Get.textTheme.headlineMedium!
             .copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.bold),
       ),
       animation: AnimationType.fromTop,
@@ -34,14 +34,14 @@ class ToastNotification {
     return ElegantNotification.success(
       description: Text(
         message,
-        style: Get.textTheme.headlineSmall!
+        style: Get.textTheme.headlineMedium!
             .copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.bold),
       ),
       displayCloseButton: false,
       showProgressIndicator: false,
       animation: AnimationType.fromTop,
       height: 50,
-      width: Get.width.r,
+      width: Get.width.r - 20.h,
       icon: Icon(
         Icons.cancel,
         color: AppColors.whiteColor,
@@ -58,7 +58,7 @@ class ToastNotification {
     return ElegantNotification.info(
       description: Text(
         message,
-        style: Get.textTheme.headlineSmall!
+        style: Get.textTheme.headlineMedium!
             .copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.bold),
       ),
       displayCloseButton: false,

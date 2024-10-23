@@ -58,14 +58,6 @@ class SplashView extends GetView<AuthController> {
                     ),
                   )
                 : SizedBox.shrink()),
-            // Obx(() => controller.isAnimated.value
-            //     ? Positioned(
-            //         bottom: 40,
-            //         left: (Get.width / 2) - 50,
-            //         child: Lottie.asset(ImageStrings.loadingAnimation,
-            //             height: 100),
-            //       )
-            //     : SizedBox.shrink()),
           ],
         ),
       ),

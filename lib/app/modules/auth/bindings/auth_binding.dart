@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import 'package:pomo/app/modules/auth/controllers/create_new_password_controller.dart';
 import 'package:pomo/app/modules/auth/controllers/forgot_password_controller.dart';
 import 'package:pomo/app/modules/auth/controllers/otp_controller.dart';
 import 'package:pomo/app/modules/auth/controllers/signin_controller.dart';
@@ -9,6 +10,9 @@ import '../controllers/auth_controller.dart';
 class AuthBinding extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<CreateNewPasswordController>(
+      () => CreateNewPasswordController(),
+    );
     Get.lazyPut<OtpController>(
       () => OtpController(),
     );

@@ -29,19 +29,19 @@ class ForgotPasswordView extends GetView {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.sp),
+            padding: EdgeInsets.symmetric(horizontal: 20.h),
             child: Column(
               children: [
                 Image(
                   image: Svg(ImageStrings.forgotPassword),
-                  height: 250.sp,
+                  height: 250.h,
                 ),
-                Gap(20.sp),
+                Gap(20.h),
                 Text(
                   Strings.forgotPasswordPrompt,
-                  style: Textstyle.textStyle.copyWith(fontSize: 16.sp),
+                  style: Textstyle.textStyle.copyWith(fontSize: 16.h),
                 ),
-                Gap(20.sp),
+                Gap(20.h),
                 Column(
                   children: List.generate(
                       _forgotPasswordController.contactDetails.length,
@@ -59,7 +59,7 @@ class ForgotPasswordView extends GetView {
                     );
                   }),
                 ),
-                Gap(48.sp),
+                Gap(48.h),
                 CustomElevatedButton(
                   controller: _forgotPasswordController,
                   onPressed: () {},
@@ -80,7 +80,7 @@ class ForgotPasswordView extends GetView {
       void Function()? onTap,
       required int index}) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 12.sp),
+      padding: EdgeInsets.only(bottom: 12.h),
       child: InkWell(
         splashColor: Get.theme.colorScheme.outline,
         borderRadius: BorderRadius.circular(
@@ -88,14 +88,14 @@ class ForgotPasswordView extends GetView {
         ),
         onTap: onTap,
         child: Obx(() => Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 12.sp),
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSizes.borderMd),
                 border: Border.all(
                   color: _forgotPasswordController.currentIndex.value == index
                       ? Get.theme.colorScheme.primary
                       : Colors.grey,
-                  width: 1.2.sp,
+                  width: 1.2.h,
                 ),
               ),
               child: Row(
@@ -103,7 +103,7 @@ class ForgotPasswordView extends GetView {
                   Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100.sp),
+                      borderRadius: BorderRadius.circular(100.h),
                       color: Get.theme.colorScheme.outline,
                     ),
                     child: Icon(
@@ -111,18 +111,18 @@ class ForgotPasswordView extends GetView {
                       color: Get.theme.colorScheme.primary,
                     ),
                   ),
-                  Gap(12.sp),
+                  Gap(12.h),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title,
                         style: Textstyle.textStyle.copyWith(
-                          fontSize: 14.sp,
+                          fontSize: 14.h,
                           color: Colors.grey.shade500,
                         ),
                       ),
-                      Gap(8.sp),
+                      Gap(8.h),
                       Text(
                         subtitle,
                         style: Textstyle.textStyle,

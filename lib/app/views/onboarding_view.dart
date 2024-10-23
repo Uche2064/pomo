@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:pomo/app/components/custom_outline_button.dart';
 import 'package:pomo/app/modules/auth/views/auth_view.dart';
 import 'package:pomo/core/constant/image_strings.dart';
 import 'package:pomo/core/global/strings.dart';
@@ -32,20 +34,7 @@ class OnboardingView extends GetView {
       ),
     ];
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            child: Text(
-              Strings.skip,
-              style: Get.textTheme.headlineMedium!
-                  .copyWith(color: Get.theme.colorScheme.primary),
-            ),
-            onPressed: () {
-              Get.off(AuthView());
-            },
-          ),
-        ],
-      ),
+      appBar: AppBar(),
       body: Stack(
         children: [
           PageView(
@@ -90,7 +79,27 @@ class OnboardingView extends GetView {
                     Text(isLastPage.value ? Strings.getStarted : Strings.next)),
               ),
             ),
-          )
+          ),
+          Container(
+            alignment: Alignment.topRight,
+            margin: EdgeInsets.all(12.h),
+            child: InkWell(
+              onTap: () {
+                Get.offAll(() => AuthView());
+              },
+              child: CustomOutlineButton(
+                  width: 150.h,
+                  height: 40,
+                  borderStyle: BorderStyle.none,
+                  backgroundColor: AppColors.lightAccent,
+                  foregroundColor: AppColors.accent,
+                  borderRadius: 20.h,
+                  text: Strings.skip,
+                  onPressed: () {
+                    Get.offAll(() => AuthView());
+                  }),
+            ),
+          ),
         ],
       ),
     );
@@ -101,7 +110,7 @@ class OnboardingView extends GetView {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Gap(120.sp),
+          Gap(120.h),
           _buildImage(image),
           Text(
             textAlign: TextAlign.center,
@@ -115,6 +124,9 @@ class OnboardingView extends GetView {
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset(assetName, width: width);
+    return Image(
+      image: Svg(assetName),
+      height: width,
+    );
   }
 }

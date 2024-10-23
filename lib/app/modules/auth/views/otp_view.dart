@@ -21,7 +21,7 @@ class OtpView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
+        padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 20.h),
         child: CustomElevatedButton(
             controller: otpController,
             onPressed: () {},
@@ -33,7 +33,7 @@ class OtpView extends GetView {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.sp),
+        padding: EdgeInsets.symmetric(horizontal: 20.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -42,30 +42,30 @@ class OtpView extends GetView {
               children: [
                 Text(
                   Strings.codeSent,
-                  style: Textstyle.textStyle.copyWith(fontSize: 16.sp),
+                  style: Textstyle.textStyle.copyWith(fontSize: 16.h),
                 ),
-                Gap(4.sp),
+                Gap(4.h),
                 Text(
                   "+000***0000",
-                  style: Textstyle.textStyle.copyWith(fontSize: 16.sp),
+                  style: Textstyle.textStyle.copyWith(fontSize: 16.h),
                 ),
               ],
             ),
-            Gap(40.sp),
+            Gap(40.h),
             OTPTextField(
               length: 5,
               width: Get.width,
               textFieldAlignment: MainAxisAlignment.spaceAround,
               fieldStyle: FieldStyle.box,
-              fieldWidth: 55.sp,
-              style: Textstyle.textStyle.copyWith(fontSize: 16.sp),
+              fieldWidth: 55.h,
+              style: Textstyle.textStyle.copyWith(fontSize: 16.h),
               otpFieldStyle: OtpFieldStyle(
                 enabledBorderColor: Get.theme.colorScheme.onPrimary,
                 focusBorderColor: Get.theme.colorScheme.primary,
                 backgroundColor: Colors.grey.shade300,
               ),
             ),
-            Gap(40.sp),
+            Gap(40.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -73,13 +73,13 @@ class OtpView extends GetView {
                   Strings.resendCodeIn,
                   style: Textstyle.textStyle.copyWith(),
                 ),
-                Gap(4.sp),
+                Gap(4.h),
                 Text(
                   "55",
                   style: Textstyle.textStyle
                       .copyWith(color: Get.theme.colorScheme.primary),
                 ),
-                Gap(4.sp),
+                Gap(4.h),
                 Text(
                   "s",
                   style: Textstyle.textStyle.copyWith(),

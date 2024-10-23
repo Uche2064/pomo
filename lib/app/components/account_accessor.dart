@@ -8,11 +8,12 @@ class AccountAccessor extends StatelessWidget {
   const AccountAccessor({
     super.key,
     required this.leftText,
-    required this.rightText, this.onTap,
+    required this.rightText,
+    this.onTap,
   });
   final String leftText;
   final String rightText;
-  final void Function()? onTap; 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,18 +22,18 @@ class AccountAccessor extends StatelessWidget {
         Text(
           leftText,
           style: Textstyle.textStyle.copyWith(
-            fontSize: 14.sp,
+            fontSize: 16.h,
             color: Get.theme.colorScheme.onTertiary.withAlpha(150),
           ),
         ),
-        Gap(8.sp),
+        Gap(8.h),
         InkWell(
           onTap: onTap,
           child: Text(
             rightText,
             style: Textstyle.textStyle.copyWith(
               color: Get.theme.colorScheme.primary,
-              fontSize: 14.sp,
+              fontSize: 16.h,
               fontWeight: FontWeight.bold,
             ),
           ),

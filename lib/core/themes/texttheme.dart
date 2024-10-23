@@ -7,47 +7,47 @@ class Texttheme {
   Texttheme._();
 
   static TextTheme lightTextTheme = const TextTheme().copyWith(
-    headlineLarge: GoogleFonts.openSans(
+    headlineLarge: GoogleFonts.afacad(
       fontSize: AppSizes.fs2xl,
       fontWeight: FontWeight.bold,
       color: AppColors.whiteColor,
     ),
-    headlineMedium: GoogleFonts.openSans(
+    headlineMedium: GoogleFonts.afacad(
       fontSize: AppSizes.fsXl,
       fontWeight: FontWeight.w700,
       color: AppColors.whiteColor,
     ),
-    headlineSmall: GoogleFonts.openSans(
+    headlineSmall: GoogleFonts.afacad(
       fontSize: AppSizes.fsMd,
       fontWeight: FontWeight.w500,
       color: AppColors.whiteColor,
     ),
-    bodyLarge: GoogleFonts.openSans(
+    bodyLarge: GoogleFonts.afacad(
       fontSize: AppSizes.fsMd,
       fontWeight: FontWeight.w500,
       color: AppColors.whiteColor,
     ),
-    bodyMedium: GoogleFonts.openSans(
+    bodyMedium: GoogleFonts.afacad(
       fontSize: AppSizes.fsMd,
       fontWeight: FontWeight.w500,
       color: AppColors.whiteColor,
     ),
-    bodySmall: GoogleFonts.openSans(
+    bodySmall: GoogleFonts.afacad(
       fontSize: AppSizes.fsMd,
       fontWeight: FontWeight.w500,
       color: AppColors.whiteColor,
     ),
-    titleLarge: GoogleFonts.openSans(
+    titleLarge: GoogleFonts.afacad(
       fontSize: AppSizes.fsMd,
       fontWeight: FontWeight.normal,
       color: AppColors.whiteColor,
     ),
-    titleMedium: GoogleFonts.openSans(
+    titleMedium: GoogleFonts.afacad(
       fontSize: AppSizes.fsSm,
       fontWeight: FontWeight.normal,
       color: AppColors.whiteColor,
     ),
-    titleSmall: GoogleFonts.openSans(
+    titleSmall: GoogleFonts.afacad(
       fontSize: AppSizes.fsSm,
       fontWeight: FontWeight.normal,
       color: AppColors.whiteColor,
@@ -55,47 +55,47 @@ class Texttheme {
   );
 
   // static TextTheme darkTextTheme = const TextTheme().copyWith(
-  //   headlineLarge: GoogleFonts.openSans(
+  //   headlineLarge: GoogleFonts.afacad(
   //     fontSize: AppSizes.fs2xl,
   //     fontWeight: FontWeight.bold,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   headlineMedium: GoogleFonts.openSans(
+  //   headlineMedium: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsXl,
   //     fontWeight: FontWeight.w600,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   headlineSmall: GoogleFonts.openSans(
+  //   headlineSmall: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsMd,
   //     fontWeight: FontWeight.w500,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   bodyLarge: GoogleFonts.openSans(
+  //   bodyLarge: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsMd,
   //     fontWeight: FontWeight.w500,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   bodyMedium: GoogleFonts.openSans(
+  //   bodyMedium: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsMd,
   //     fontWeight: FontWeight.w500,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   bodySmall: GoogleFonts.openSans(
+  //   bodySmall: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsMd,
   //     fontWeight: FontWeight.w500,
   //     color: AppColors.darkPrimary,
   //   ),
-  //   titleLarge: GoogleFonts.openSans(
+  //   titleLarge: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsMd,
   //     fontWeight: FontWeight.normal,
   //     color: AppColors.darkSecondary,
   //   ),
-  //   titleMedium: GoogleFonts.openSans(
+  //   titleMedium: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsSm,
   //     fontWeight: FontWeight.normal,
   //     color: AppColors.darkSecondary,
   //   ),
-  //   titleSmall: GoogleFonts.openSans(
+  //   titleSmall: GoogleFonts.afacad(
   //     fontSize: AppSizes.fsSm,
   //     fontWeight: FontWeight.normal,
   //     color: AppColors.darkSecondary,
